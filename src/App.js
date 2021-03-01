@@ -1,24 +1,24 @@
 import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-
+import { Switch, BrowserRouter, Route, Redirect } from "react-router-dom";
+import appRoutes from './Routes/index';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Switch>
+        {appRoutes.map((prop, key) => (
+          <Route
+            exact
+            path={prop.path}
+            component={prop.component}
+            key={key}
+          />
+        ))}
+      </Switch>
+      <Route exact path="/" render={() => <Redirect to="/" />} />
     </div>
+
   );
 }
 
